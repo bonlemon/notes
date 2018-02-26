@@ -1,7 +1,7 @@
 import express      from 'express';
 import bodyParser   from 'body-parser';
 
-import PORT from './constants';
+import { serverPort } from './etc/config.json';
 
 import * as db from './utils/DataBaseUtis';
 
@@ -29,6 +29,6 @@ app.delete('/notes/:id', (req, res) => {
 
 
 
-const server = app.listen(PORT, () => {
-    console.log(`Server is up and running on port: ${PORT}`)
+const server = app.listen(serverPort, () => {
+    console.log(`Server is up and running on port: ${serverPort}`)
 })
