@@ -1,1 +1,2 @@
-import React from 'react';
+require('babel-core/register');
+require('./server/app')
