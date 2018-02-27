@@ -1,7 +1,7 @@
 var path = require('path');
 
 module.exports = {
-    entry: "./front/index.js",
+    entry: "./client/index.js",
     output: {
         path: path.resolve(__dirname, './public'),
         publicPath: '/public/',
@@ -10,13 +10,29 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(woff|woff2|ttf|eot|ico)$/,
+                loader: 'file-loader?name=[path][name].[ext]'
+            },
+            {
+                test: /\.png$/,
+                loader: 'url-loader?limit=10000&mimetype=image/png'
+            },
+            {
+                test: /\.svg/,
+                loader: 'url-loader?limit=26000&mimetype=image/svg+xml'
+            },
+            {
                 test: /\.jsx?$/,
                 exclude: /(node_modules)/,
                 loader: "babel-loader",
                 options: {
-                    presets:["env", "react"] // plugins
+                    presets: ["env", "react"] // plugins
                 }
             },
+            {
+                test: /\.(s*)css/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            }
         ]
     }
 }
