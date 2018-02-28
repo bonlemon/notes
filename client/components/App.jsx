@@ -3,30 +3,24 @@ import Note from './Note.jsx';
 import NoteEditor from './NoteEditor.jsx';
 import NoteGrid from './NotesGrid.jsx';
 
+import './App.scss';
+
 class App extends React.Component {
     constructor(props){
         super(props);
 
-        this.state = {
-            name: ''
-        };
-
-        this.handleNameChange = this.handleNameChange.bind(this);
     }
 
-    handleNameChange(e){
-        this.setState({
-            name: e.target.value
-        })
+    handleNoteAdd(data){
+        console.log({data})
     }
 
     render (){
         return (
-            <div>
-                <h1>Hi {this.state.name}</h1>
-                <input type='text' value={this.state.name} onChange={this.handleNameChange}/>
+            <div className="App">
+                <h2 className="App__header">NotesApp</h2>
+                <NoteEditor onNoteAdd={this.handleNoteAdd}/>
                 <Note />
-                <NoteEditor />
                 <NoteGrid />
             </div>
         )
