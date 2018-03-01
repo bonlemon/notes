@@ -37,6 +37,12 @@
         }
     }
 
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     &__button {
         border: 0 None;
         border-radius: 24px;
@@ -55,7 +61,7 @@
 
         text-transform: uppercase;
         font-weight: 500;
-        transform: all 100msease-in-out;
+        transform: all 100ms ease-in-out;
         background: #3ac569;
         color: white;
 

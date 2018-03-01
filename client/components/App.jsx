@@ -1,7 +1,7 @@
 import React from 'react';
-import Note from './Note.jsx';
-import NoteEditor from './NoteEditor.jsx';
-import NoteGrid from './NotesGrid.jsx';
+import Note from './Note';
+import NoteEditor from './NoteEditor';
+import NoteGrid from './NotesGrid';
 
 import './App.scss';
 
@@ -17,8 +17,8 @@ class App extends React.Component {
 
     render (){
         return (
-            <div className="App">
-                <h2 className="App__header">NotesApp</h2>
+            <div className="b-app">
+                <h2 className="b-app__header">NotesApp</h2>
                 <NoteEditor onNoteAdd={this.handleNoteAdd}/>
                 <Note />
                 <NoteGrid />
