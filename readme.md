@@ -4,7 +4,6 @@
 Запуск клиент - npm run client
 
 
-<hr>
 
 h2 Используется:
 ---
@@ -16,3 +15,4 @@ Webpack
 React
 Redux
 Sass
+Axios

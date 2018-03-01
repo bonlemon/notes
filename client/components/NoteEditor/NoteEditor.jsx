@@ -30,7 +30,7 @@ class NoteEditor extends React.Component {
             color: this.state.color
         }
 
-        this.props.onNoteAdd(newNote);
+        this.props.onAddNote(newNote);
 
         this.setState({
             title: '',

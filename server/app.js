@@ -1,7 +1,7 @@
 import express      from 'express';
 import bodyParser   from 'body-parser';
 
-import { serverPort } from './etc/config.json';
+import { serverPort } from './../etc/config.json';
 
 import * as db from './utils/DataBaseUtis';
 
