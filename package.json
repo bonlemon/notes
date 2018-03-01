@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "dev": "webpack-dev-server --hot --open",
+    "server": "nodemon index.js",
+    "client": "webpack-dev-server --hot --open",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
