@@ -1,6 +1,6 @@
 import { Map, List } from 'immutable';
 
-import { ACTIONS } from './../constants';
+import ACTIONS from '../constants';
 
 const initialState = Map({
     notes:      List([]),
