@@ -35,7 +35,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToPros = (dispatch) => {
     return {
-        onCreateNote:(note) => {
+        onCreateNote: (note) => {
             return dispatch(actions.createNote(note))
         } ,
         onLoadNotes:() => {
