@@ -1,18 +1,21 @@
 import React from 'react';
 
-class NoteGrid extends React.Component {
-    constructor(props){
-        super(props);
+import Note from '../Note'
 
-    }
+import './NotesGrid.scss'
 
+
+class NotesGrid extends React.Component {
     render (){
+        const { notes, deleteNote } = this.props;
         return (
-            <div>
-                <h1>Hi I'm NoteGrid</h1>
+            <div className="note-grid">
+                {
+                    notes && notes.map((note, index) => <Note key={index} note={note} deleteNote={deleteNote} />)
+                }
             </div>
         )
     }
 }
 
-export default NoteGrid;
+export default NotesGrid;

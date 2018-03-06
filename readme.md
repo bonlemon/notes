@@ -1,5 +1,6 @@
 ** Заментки **
 ===
+Запуск Mongo - sudo service mongod start
 Запуск сервера - npm run serer
 Запуск клиент - npm run client
 

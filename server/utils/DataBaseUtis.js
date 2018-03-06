@@ -22,10 +22,14 @@ export function createNote(data) {
         createdAt: new Date()
     })
 
-    note.save();
+    return note.save();
 }
 
 export function deleteNote(id) {
-    return Note.findById(id).remote();
+
+    // console.log('Note.findById(id)', Note.findById(id))
+    // return Note.deleteOne({"_id": mongoose.Types.ObjectId(id)})
+    return Note.findById(id).remove()
+    // return Note.remove({"_id": id});
 }
 

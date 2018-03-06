@@ -1,9 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import App from './../components/App.jsx';
+import NoteEditor from './../components/NoteEditor';
 
-import * as actions from './../actions';
+import {
+    createNote,
+    loadNotes
+} from '../actions';
+
+import {
+    getNotes
+} from '../reducers';
 
 
 
@@ -13,15 +20,15 @@ class ContainerNoteEditor extends React.Component {
         this.props.onLoadNotes();
     }
 
-    handleCreateNote(note){
-        console.log({note})
+    handleCreateNote = (note) => {
+        const { onCreateNote, onLoadNotes } = this.props;
 
-        this.props.onCreateNote(note);
+        onCreateNote(note);
     }
 
     render (){
-        return <App 
-            {...this.props} 
+        return <NoteEditor 
+            notes={this.props.notes}
             onAddNote={this.handleCreateNote.bind(this)}
         />
     }   
@@ -29,18 +36,18 @@ class ContainerNoteEditor extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-
+        notes: getNotes(state)
     }
 }
 
 const mapDispatchToPros = (dispatch) => {
     return {
         onCreateNote: (note) => {
-            return dispatch(actions.createNote(note))
-        } ,
-        onLoadNotes:() => {
-            return dispatch(actions.loadNotes())
-        } ,
+            return dispatch(createNote(note))
+        },
+        onLoadNotes: () => {
+            return dispatch(loadNotes())
+        },
     }
 }
 

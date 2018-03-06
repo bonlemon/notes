@@ -1,21 +1,14 @@
 import React from 'react';
 import Note from './Note';
 import ContainerNoteEditor from './../containers/NoteEditor.jsx';
-import NoteGrid from './NotesGrid';
+import ContainerNoteGrid from './../containers/NotesGrid.jsx';
 
 import './App.scss';
 
 class App extends React.Component {
 
     render (){
-            // <div className="app">
-            //     <h2 className="app__header">NotesApp</h2>
-            //     <ContainerNoteEditor />
-            //     <Note />
-            //     <NoteGrid />
-            // </div>
-
-
+            
             // <div className="app">
             //     <div className="app__sidebar">
             //         <img src="http://localhost:8080/client/imgs/try.png" alt="" className="app__flexible-image "/>
@@ -58,8 +51,7 @@ class App extends React.Component {
             <div className="app">
                 <h2 className="app__header">NotesApp</h2>
                 <ContainerNoteEditor />
-                <Note />
-                <NoteGrid />
+                <ContainerNoteGrid />
             </div>
         )
     }

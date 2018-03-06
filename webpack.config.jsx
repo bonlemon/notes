@@ -1,4 +1,5 @@
 var path = require('path');
+var clientPort = require('./etc/config.json').clientPort;
 
 module.exports = {
     entry: "./client/index.js",
@@ -26,7 +27,7 @@ module.exports = {
                 exclude: /(node_modules)/,
                 loader: "babel-loader",
                 options: {
-                    presets: ["env", "react"] // plugins
+                    presets: ["env", "react", "stage-1"] // plugins
                 }
             },
             {
@@ -34,5 +35,8 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'sass-loader']
             }
         ]
+    },
+    devServer: {
+        port: clientPort
     }
 }

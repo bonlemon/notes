@@ -10,13 +10,14 @@ const initialState = Map({
 
 const formatNote = (note) => {
     return {
-        id: note.id,
+        id: note._id,
         title: note.title,
         text: note.text,
         color: note.color || '#fff',
         createdAt: note.createdAt
     }
 }
+
 function reducer(state = initialState, action) {
     switch (action.type){
 
@@ -25,9 +26,7 @@ function reducer(state = initialState, action) {
             return state.set('error', null)
 
         case ACTIONS.FETCH_NOTES_SUCCESS:
-            return state.set('notes', fromJS(
-                action.notes.map(note => formatNote(note))
-            ))
+            return state.set('notes', List(action.payload.notes.map(note => formatNote(note))))
 
         case ACTIONS.FETCH_NOTES_FAILURE: 
             return state.set('error', action.error)
@@ -37,7 +36,7 @@ function reducer(state = initialState, action) {
             return state.set('error', null)
 
         case ACTIONS.CREATE_NOTE_SUCCESS:
-            return state.set('notes', state.getIn(['notes']).push(action.payload))
+            return state.set('notes', state.getIn(['notes']).push(action.payload.note))
 
         case ACTIONS.CREATE_NOTE_FAILURE: 
             return state.set('error', action.error)
@@ -62,6 +61,6 @@ export default reducer;
 
 // selectors
 
-export function getNotes (state) {
+export function getNotes(state) {
     return state.getIn(["notes"]) ? state.getIn(["notes"]).toJS() : []
 }

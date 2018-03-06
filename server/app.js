@@ -1,5 +1,6 @@
 import express      from 'express';
 import bodyParser   from 'body-parser';
+import cors         from 'cors';
 
 import { serverPort } from './../etc/config.json';
 
@@ -12,6 +13,16 @@ const app = express();
 // Middleware for parsing requests 
 // and transform from json
 app.use(bodyParser.json());
+
+// it needs for cors
+app.use(cors({origin: '*'}));
+
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+//  });
 
 app.get('/notes', (req, res) => {
     db.listNotes().then(data => {

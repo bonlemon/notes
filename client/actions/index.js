@@ -1,7 +1,7 @@
 // import dispatch from 'redux';
 import axios from 'axios';
 
-import { apiPrefics } from '../../etc/config.json';
+import { apiPrefix } from '../../etc/config.json';
 import ACTIONS from '../constants';
 
 
@@ -11,11 +11,16 @@ export function loadNotes() {
             type: ACTIONS.FETCH_NOTES_REQUEST
         });
 
-        axios.get(`${apiPrefics}/notes`)
+        axios.get(`${apiPrefix}/notes`)
             .then(({data}) => {
+
+                console.log('data', data)
+
                 dispatch({
                     type: ACTIONS.FETCH_NOTES_SUCCESS,
-                    notes: data
+                    payload: {
+                        notes: data
+                    }
                 })
             })
             .catch(err => {
@@ -32,19 +37,22 @@ export function createNote(note) {
     return (dispatch) => {
     
         dispatch({
-            type: ACTIONS.FETCH_NOTES_REQUEST
+            type: ACTIONS.CREATE_NOTE_REQUEST
         });
-        
-        axios.post(`${apiPrefics}/notes`, note )
+
+        axios.post(`${apiPrefix}/notes`, note )
             .then(() => {
+                console.log('note', note)
                 dispatch({
-                    type:ACTIONS.REMOVE_NOTE_SUCCESS,
-                    note
+                    type:ACTIONS.CREATE_NOTE_SUCCESS,
+                    payload: {
+                        note
+                    }
                 })
             })
             .catch(err => {
                 dispatch({
-                    type:ACTIONS.FETCH_NOTES_FAILURE,
+                    type:ACTIONS.CREATE_NOTE_FAILURE,
                     error: err
                 })
             })
@@ -59,7 +67,7 @@ export function deleteNote(noteId) {
             type: ACTIONS.REMOVE_NOTE_REQUEST
         });
 
-        axios.delete(`${apiPrefics}/notes`, noteId)
+        axios.delete(`${apiPrefix}/notes/${noteId}`)
             .then(() => {
                 dispatch({
                     type:ACTIONS.REMOVE_NOTE_SUCCESS,
@@ -68,7 +76,7 @@ export function deleteNote(noteId) {
             })
             .catch(err => {
                 dispatch({
-                    type:ACTIONS.FETCH_NOTES_FAILURE,
+                    type:ACTIONS.REMOVE_NOTE_FAILURE,
                     error: err
                 })
             })

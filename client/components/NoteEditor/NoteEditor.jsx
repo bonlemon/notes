@@ -1,47 +1,64 @@
 import React from 'react';
- 
+
+import ColorPicker from '../ColorPicker';
+
 import './NoteEditor.scss';
+
+
 
 class NoteEditor extends React.Component {
 
     constructor(props){
         super(props);
+
         this.state = {
             title: '',
             text: '',
             color: '#FFFFFF',
         };
+    };
 
-        this.handlerTextChange =    this.handlerTextChange.bind(this);
-        this.handlerTitleChange =   this.handlerTitleChange.bind(this);
-        this.handlerNoteAdd =       this.handlerNoteAdd.bind(this);
-    }
-
-    handlerTextChange(event){
-        this.setState({
+    handlerTextChange = (event) => {
+        return this.setState({
             text: event.target.value
         })
     }
-    handlerTitleChange(event){
-        this.setState({
+
+    handlerTitleChange = (event) => {
+        return this.setState({
             title: event.target.value
         })
-    }
-    handlerNoteAdd(){
-        const newNote = {
-            title: this.state.title,
-            text: this.state.text,
-            color: this.state.color
-        }
+    };
 
-        this.props.onAddNote(newNote);
+    handlerColorChange = (color) => {
 
-        this.setState({
-            title: '',
-            text: '',
-            color: '#FFFFFF',
+        console.log('color', color)
+        return this.setState({
+            color
         })
     }
+
+    handlerNoteAdd = () => {
+        const {title, text, color} = this.state;
+        const newNote = {
+            title: title,
+            text: text,
+            color: color
+        }
+
+        Promise.resolve()
+            .then(() => {
+                return this.setState({
+                    title: '',
+                    text: '',
+                    color: '#FFFFFF',
+                })
+            })
+            .then(() => {
+                this.props.onAddNote(newNote);
+            })
+    }
+
     render (){
         return (
             <div className="note-editor">
@@ -61,6 +78,10 @@ class NoteEditor extends React.Component {
                     onChange={this.handlerTextChange}
                 />
                 <div className="note-editor__footer">
+                    <ColorPicker
+                        value={this.state.color}
+                        onChange={this.handlerColorChange}
+                    />
                     <button
                         className="note-editor__button"
                         disabled={!this.state.text}
@@ -69,6 +90,8 @@ class NoteEditor extends React.Component {
                         Add
                     </button>
                 </div>
+
+
             </div>
         )
     }
