@@ -36,7 +36,7 @@ function reducer(state = initialState, action) {
             return state.set('error', null)
 
         case ACTIONS.CREATE_NOTE_SUCCESS:
-            return state.set('notes', state.getIn(['notes']).push(action.payload.note))
+            return state.set('notes', state.getIn(['notes']).push(formatNote(action.payload.note)))
 
         case ACTIONS.CREATE_NOTE_FAILURE: 
             return state.set('error', action.error)
@@ -46,8 +46,9 @@ function reducer(state = initialState, action) {
             return state.set('error', null)
 
         case ACTIONS.REMOVE_NOTE_SUCCESS:
-            return state.set('notes', state.get('notes').filterNot((item)=> {
-                return item.id === noteId
+
+            return state.set('notes', state.getIn(['notes']).filterNot((item)=> {
+                return item.id === action.payload.id
             }))
         
         case ACTIONS.REMOVE_NOTE_FAILURE: 

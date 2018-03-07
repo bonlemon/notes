@@ -41,12 +41,11 @@ export function createNote(note) {
         });
 
         axios.post(`${apiPrefix}/notes`, note )
-            .then(() => {
-                console.log('note', note)
+            .then(({data}) => {
                 dispatch({
                     type:ACTIONS.CREATE_NOTE_SUCCESS,
                     payload: {
-                        note
+                        note: data
                     }
                 })
             })
@@ -68,10 +67,12 @@ export function deleteNote(noteId) {
         });
 
         axios.delete(`${apiPrefix}/notes/${noteId}`)
-            .then(() => {
+            .then(({data}) => {
                 dispatch({
                     type:ACTIONS.REMOVE_NOTE_SUCCESS,
-                    noteId
+                    payload: {
+                        id: data.id
+                    }
                 })
             })
             .catch(err => {

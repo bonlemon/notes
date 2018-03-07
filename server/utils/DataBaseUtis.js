@@ -26,10 +26,10 @@ export function createNote(data) {
 }
 
 export function deleteNote(id) {
-
-    // console.log('Note.findById(id)', Note.findById(id))
-    // return Note.deleteOne({"_id": mongoose.Types.ObjectId(id)})
-    return Note.findById(id).remove()
-    // return Note.remove({"_id": id});
+    return Note.findByIdAndRemove(id, (err, result) => {
+        if (err){
+            console.log('err')
+        }
+    });
 }
 
